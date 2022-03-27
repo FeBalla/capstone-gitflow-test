@@ -26,3 +26,4 @@ En la sección de parámetros del archivo `parameters.py` se pueden configurar l
 * `WAITING_TIME`: Indica el tiempo de espera antes de poder volver a ingresar otra opción en el menú principal.
 * `VALID_OPTIONS`: Indica la lista de opciones válidas de acuerdo a las funciones disponibles.
 * `EXIT_OPTION`: Indica la opción que se utilizará para terminar el programa en el menú principal. **NOTA:** Esta opción también debe estar incluida en `VALID_OPTIONS`.
+* `N_TOP`: Indica la cantidad de opciones de los top (ej: top 10, top 7, etc.)
