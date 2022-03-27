@@ -1,6 +1,12 @@
 from functions.function_handler import FunctionHandler
+import pandas as pd
 import parameters
 import time
+
+
+def load_data(data_path, chunk_size):
+  data_chunks = pd.read_json(data_path, lines=True, chunksize=chunk_size)
+  return data_chunks
 
 
 def display_main_menu():
@@ -13,8 +19,10 @@ def display_main_menu():
 
 
 def main(data_path):
+  data_chunks = load_data(data_path, parameters.DATA_CHUNK_SIZE)
+  function_handler = FunctionHandler(data_chunks)
+
   running = True
-  function_handler = FunctionHandler("data")
 
   while running:
     time.sleep(parameters.WAITING_TIME)
