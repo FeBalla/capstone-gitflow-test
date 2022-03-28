@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def get_most_retweeted_tweets(data_chunks, n=10):
-  '''Gets the N most retweeted tweets and returns a sorted dataframe with the results'''
+  '''Gets the N most retweeted tweets and returns a descending sorted dataframe with the results'''
   top_per_chunk = []
 
   for chunk in data_chunks:
@@ -18,7 +18,7 @@ def display_most_retweeted_tweets(top_data):
   top_pos = 1
   for _, tweet in top_data.iterrows():
     print(f"TOP {top_pos}:")
-    print(tweet['content'])
+    print(tweet["content"])
     print(f"> Usuario: {tweet['user']['displayname']} (@{tweet['user']['username']})")
     print(f"> Cantidad de retweets: {tweet['retweetCount']}\n")
     top_pos += 1
