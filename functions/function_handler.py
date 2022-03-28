@@ -1,6 +1,6 @@
 from functions.top_retweets import get_most_retweeted_tweets, display_most_retweeted_tweets
-from functions.top_users import get_users_with_most_tweets, display_users_with_most_tweets
-from functions.top_days import get_days_with_most_tweets, display_days_with_most_tweets
+from functions.top_users import get_users_with_more_tweets, display_users_with_more_tweets
+from functions.top_days import get_days_with_more_tweets, display_days_with_more_tweets
 from functions.top_hashtags import get_most_used_hasthags, display_most_used_hasthags
 from functions.utils import load_data
 import parameters
@@ -11,8 +11,8 @@ class FunctionHandler:
 
     self.functions = {
       "1": [get_most_retweeted_tweets, display_most_retweeted_tweets],
-      "2": [get_users_with_most_tweets, display_users_with_most_tweets],
-      "3": [get_days_with_most_tweets, display_days_with_most_tweets],
+      "2": [get_users_with_more_tweets, display_users_with_more_tweets],
+      "3": [get_days_with_more_tweets, display_days_with_more_tweets],
       "4": [get_most_used_hasthags, display_most_used_hasthags],
     }
 

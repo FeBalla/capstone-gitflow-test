@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def get_days_with_most_tweets(data_chunks, n=10):
+def get_days_with_more_tweets(data_chunks, n=10):
   '''Gets the N days with more tweets and returns a descending sorted dataframe with the results'''
   top_per_chunk = []
 
@@ -19,7 +19,7 @@ def get_days_with_most_tweets(data_chunks, n=10):
   return top_days
 
 
-def display_days_with_most_tweets(top_data):
+def display_days_with_more_tweets(top_data):
   '''Shows the given top of the days with more tweets, showing the date and their number of tweets'''
   top_pos = 1
   for _, day in top_data.iterrows():
