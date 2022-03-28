@@ -1,24 +1,34 @@
-from functions.top_retweets import get_most_retweeted_tweets
-from functions.top_users import get_users_with_most_tweets
-from functions.top_days import get_days_with_most_tweets
-from functions.top_hashtags import get_most_used_hasthags
+from functions.top_retweets import get_most_retweeted_tweets, display_most_retweeted_tweets
+from functions.top_users import get_users_with_most_tweets, display_users_with_most_tweets
+from functions.top_days import get_days_with_most_tweets, display_days_with_most_tweets
+from functions.top_hashtags import get_most_used_hasthags, display_most_used_hasthags
 import parameters
 
 class FunctionHandler:
   def __init__(self, data_chunks) -> None:
-      self.data_chunks = data_chunks
+    self.data_chunks = data_chunks
+
+    self.functions = {
+      "1": [get_most_retweeted_tweets, display_most_retweeted_tweets],
+      "2": [get_users_with_most_tweets, display_users_with_most_tweets],
+      "3": [get_days_with_most_tweets, display_days_with_most_tweets],
+      "4": [get_most_used_hasthags, display_most_used_hasthags],
+    }
+
+    self.saved_responses = {
+      "1": None,
+      "2": None,
+      "3": None,
+      "4": None,
+    }
 
   def use_function(self, option) -> str:
-    if option == "1":
-      response = get_most_retweeted_tweets(self.data_chunks, parameters.N_TOP)
-    
-    if option == "2":
-      response = get_users_with_most_tweets(self.data_chunks, parameters.N_TOP)
+    '''Uses a function according to the given option (assumes is valid) and displays the response. 
+    Saves the results to improve the performance for repeated requests'''
+    display_function = self.functions[option][1]
 
-    if option == "3":
-      response = get_days_with_most_tweets(self.data_chunks, parameters.N_TOP)
+    if self.saved_responses[option] is None:
+      selected_function = self.functions[option][0]
+      self.saved_responses[option] = selected_function(self.data_chunks, parameters.N_TOP)
 
-    if option == "4":
-      response = get_most_used_hasthags(self.data_chunks, parameters.N_TOP)
-
-    return response
+    display_function(self.saved_responses[option])
