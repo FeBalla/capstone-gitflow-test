@@ -2,11 +2,12 @@ from functions.top_retweets import get_most_retweeted_tweets, display_most_retwe
 from functions.top_users import get_users_with_most_tweets, display_users_with_most_tweets
 from functions.top_days import get_days_with_most_tweets, display_days_with_most_tweets
 from functions.top_hashtags import get_most_used_hasthags, display_most_used_hasthags
+from functions.utils import load_data
 import parameters
 
+
 class FunctionHandler:
-  def __init__(self, data_chunks) -> None:
-    self.data_chunks = data_chunks
+  def __init__(self) -> None:
 
     self.functions = {
       "1": [get_most_retweeted_tweets, display_most_retweeted_tweets],
@@ -28,7 +29,9 @@ class FunctionHandler:
     display_function = self.functions[option][1]
 
     if self.saved_responses[option] is None:
+      data_chunks = load_data(parameters.DATA_PATH, parameters.DATA_CHUNK_SIZE)
+
       selected_function = self.functions[option][0]
-      self.saved_responses[option] = selected_function(self.data_chunks, parameters.N_TOP)
+      self.saved_responses[option] = selected_function(data_chunks, parameters.N_TOP)
 
     display_function(self.saved_responses[option])

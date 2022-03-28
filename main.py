@@ -1,13 +1,6 @@
 from functions.function_handler import FunctionHandler
-import pandas as pd
 import parameters
 import time
-
-
-def load_data(data_path, chunk_size):
-  '''Loads and the JSON tweets data in data_path in chunks of an specific size'''
-  data_chunks = pd.read_json(data_path, lines=True, chunksize=chunk_size)
-  return data_chunks
 
 
 def display_main_menu():
@@ -20,10 +13,9 @@ def display_main_menu():
   print(f"{parameters.EXIT_OPTION}. SALIR")
 
 
-def main(data_path):
+def main():
   '''Main function that runs the program'''
-  data_chunks = load_data(data_path, parameters.DATA_CHUNK_SIZE)
-  function_handler = FunctionHandler(data_chunks)
+  function_handler = FunctionHandler()
 
   running = True
 
@@ -47,4 +39,4 @@ def main(data_path):
 
 
 if __name__ == "__main__":
-  main(parameters.DATA_PATH)
+  main()
